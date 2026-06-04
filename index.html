@@ -1,150 +1,568 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="My resume website">
-	<meta name="author" content="Gia Thinh">
-	<meta name="country" content="Viet nam">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="raw.css">
-	<title>Gia Thinh Resume</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trương Thành Gia Thịnh — Mechanical Design Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-soft: #4a4a46;
+    --ink-mute: #8a8a84;
+    --rule: #e0ddd6;
+    --surface: #faf9f6;
+    --white: #ffffff;
+    --accent: #b5893a;
+    --accent-light: #f5eed8;
+    --accent-dark: #7a5c1e;
+    --tag-bg: #f0ede5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── LAYOUT ── */
+  .wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 4rem 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: end;
+  }
+
+  .name-block h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+
+  .name-block h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .name-block .role {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .contact-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .contact-block a, .contact-block span {
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    justify-content: flex-end;
+  }
+
+  .contact-block a:hover { color: var(--accent); }
+
+  .contact-block svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  /* ── NAV DOTS ── */
+  .nav-strip {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.8rem 0;
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .nav-strip a {
+    color: var(--ink-mute);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-strip a:hover { color: var(--accent); }
+
+  /* ── MAIN GRID ── */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 4rem;
+    padding-top: 3.5rem;
+  }
+
+  /* ── SECTION ── */
+  section { margin-bottom: 3rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── SUMMARY ── */
+  .summary-text {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.2rem;
+  }
+
+  /* ── EXPERIENCE ENTRIES ── */
+  .entry {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .entry:last-child { border-bottom: none; }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.25rem;
+    gap: 1rem;
+  }
+
+  .entry-company {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .entry-date {
+    font-size: 0.75rem;
+    color: var(--ink-mute);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+  }
+
+  .entry-role {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+
+  .entry ul {
+    padding-left: 1rem;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .entry ul li { margin-bottom: 0.25rem; }
+
+  /* ── SIDEBAR ── */
+  .sidebar section { margin-bottom: 2.5rem; }
+
+  /* ── SKILLS TAGS ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    background: var(--tag-bg);
+    color: var(--ink-soft);
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+    font-weight: 400;
+    border: 1px solid var(--rule);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .tag:hover {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    border-color: var(--accent);
+  }
+
+  .tag.highlight {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── SOFTWARE LIST ── */
+  .software-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.85rem;
+  }
+
+  .software-row:last-child { border-bottom: none; }
+
+  .software-name { color: var(--ink); }
+
+  .software-bar {
+    width: 70px;
+    height: 3px;
+    background: var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .software-bar span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-degree {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-bottom: 0.1rem;
+  }
+
+  .edu-school {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.15rem;
+  }
+
+  .edu-meta {
+    font-size: 0.75rem;
+    color: var(--ink-mute);
+  }
+
+  /* ── AWARD ── */
+  .award-item {
+    background: var(--accent-light);
+    border: 1px solid #e8d9b0;
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-size: 0.82rem;
+    color: var(--accent-dark);
+    line-height: 1.5;
+  }
+
+  .award-item strong { display: block; font-weight: 500; margin-bottom: 0.2rem; color: var(--accent-dark); }
+
+  /* ── LANGUAGE ── */
+  .lang-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .lang-row:last-child { border-bottom: none; }
+
+  .lang-badge {
+    font-size: 0.7rem;
+    background: var(--tag-bg);
+    border: 1px solid var(--rule);
+    color: var(--ink-mute);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 4rem;
+    padding: 2rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--ink-mute);
+  }
+
+  @media (max-width: 660px) {
+    header { grid-template-columns: 1fr; }
+    .contact-block { align-items: flex-start; text-align: left; }
+    .contact-block a, .contact-block span { justify-content: flex-start; }
+    .main-grid { grid-template-columns: 1fr; }
+    .nav-strip { flex-wrap: wrap; gap: 0.75rem; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .nav-strip { display: none; }
+    .main-grid { grid-template-columns: 1fr 220px; gap: 2.5rem; }
+    header { padding: 2rem 0 1.5rem; }
+  }
+</style>
 </head>
 <body>
-	<h1 id="resume"> My Resume </h1>
-	<nav>
-		<a href="#contact" class="menu_left">About me</a>
-		<a href="#social" class="menu_left">Social Media</a>
-		<a href="#edu" class="menu_left">Education</a>
-		<a href="#softwares" class="menu_left">Softwares</a>
-		<a href="#workex" class="menu_left">Work Experience</a>
-	</nav>
-	<div id="flex_container">
-		<div id="left_side">
-			<img src="CVimg.jpg" alt="My avt photo" width="199" height="256">
-			<h2>Truong Thanh Gia Thinh</h2>
-			<h3><em>Intern</em></h3>
-			<h2 id="contact">About me </h2>
-			<a>As a highly adaptable and enthusiastic individual, I am
-				constantly seeking new challenges and opportunities to
-				expand my knowledge and skills. My ultimate goal is to
-				become a well-rounded engineer, with expertise in
-				computation, simulation, and coding. My positive attitude
-				and eagerness to learn make me a valuable addition to any
-				team
-			</a>
-			<ul>
-				<li><strong>Date of birth:</strong> 26/11/2001</li>
-				<li><strong>Gender:</strong> Male</li>
-			</ul>
-			<h2 id="social">Social Media</h2>
-			<ul>
-				<li><strong>Facebook:</strong><a href="https://www.facebook.com/ban.jackson.75">Truong Thanh Gia Thinh</a></li>
-				<li><strong>Youtube:</strong><a href="https://youtube.com/@bigweldofficial2079?si=W2u4P791wxEc4iQk">Bigweld Official</a></li>
-				<li><strong>Tiktok:</strong><a href="https://www.tiktok.com/@anh7tuoitre?is_from_webapp=1&sender_device=pc">Thinh day ne</a></li>
-			</ul>
-			<h2 id="edu"><strong>Education</strong></h2>
-			<p>Step 2019 - Now</p>
-			<p><strong>Ho Chi Minh City University of Technology</strong></p>
-			<p><strong>Major:</strong><em> Engineering Mechanics</em></p>
-			
-		</div>
 
-		<div id="right_side">
-			<h2 id="softwares">Softwares</h2>
-			<table>
-				<thead>
-				  <tr>
-					<th>Softwares</th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr>
-					<td>ANSYS ADPL</td>
-				  </tr>
-				  <tr>
-					<td>ANSYS WORKBECH</td>
-				  </tr>
-				  <tr>
-					<td>AUTOCAD</td>
-				  </tr>
-				  <tr>
-					<td>CIMCO EDIT</td>
-				  </tr>
-				  <tr>
-					<td>CSS</td>
-				  </tr>
-				  <tr>
-					<td>JAVASCRIPT</td>
-				  </tr>
-				  <tr>
-					<td>MATLAB</td>
-				  </tr>
-				  <tr>
-					<td>MAPLE</td>
-				  </tr>
-				  <tr>
-					<td>MICROSOFT OFFICE</td>
-				  </tr>
-				  <tr>
-					<td>PHP</td>
-				  </tr>
-				  <tr>
-					<td>PYTHON</td>
-				  </tr>
-				  <tr>
-					<td>SOLIDWORKS</td>
-				  </tr>
-				</tbody>
-			  </table>
-																		
-			<div id="flex_container_rightside">
-				<div id="a_right_side">
-					<h2 id="workex">Work Experience</h2>
-					<ul>
-						<li>
-							<p>NFT Monstarrior Game</p>
-							<p>Supporter</p>
-							<p>Main responsibility:</p>
-								<ul>
-									<li>Write and post ads via Facebook, Twitter,...</li>
-									<li>Introduce, advise and answer players' questions about game features through Discord community,...</li>
-								</ul>
-							<p>Achievements:</p>
-								<ul>
-									<li>Gain knowledge of cryptocurrency trading, NFTs</li>
-								</ul>
-						</li>
-						<li>
-							<p>Doctor House Engineering</p>
-							<p>Intern</p>
-							<p>Main responsibilit</p>
-								<ul>
-									<li>Shopdrawing M&E</li>
-								</ul>
-							<p>Achievements:</p>
-								<ul>
-									<li>Advanced AutoCad software skills</li>
-									<li>Office skills and adaptability to the working environment become better</li>
-								</ul>
-						</li>
-					</ul>
-				</div>
-				<div id="b_right_side">
-					<h2>ACTIVITIES</h2>
-					<p></p>
-					<img src="XTN.jpg" alt="My avt photo" width="230" height="420">
-					<p></p>
-					<img src="BKFC.jpg" alt="My avt photo" width="230" height="420">
-					<p></p>
-					<img src="BD.jpg" alt="My avt photo" width="230" height="420">
-				</div>
-			</div>
-		</div>
-	</div>
-	<footer>
-		<p><strong>Created by Gia Thinh</strong> - <a href="mailto:thinh.truongbo261101@hcmut.edu.vn">Email me</a></p>
-		<p><strong>Phone:</strong> xxxxxxxxxxxx</p>
-		<p><strong>Address:</strong> District Binh Tan , Ho Chi Minh City</p>
-	</footer>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="name-block">
+      <h1>Trương Thành<br><em>Gia Thịnh</em></h1>
+      <p class="role">Mechanical Design Engineer</p>
+    </div>
+    <div class="contact-block">
+      <a href="tel:0332044085">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.5 2 2 0 0 1 3.6 2.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0332 044 085
+      </a>
+      <a href="mailto:thinhyugioh@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        thinhyugioh@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/thinhtruong2611" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin/thinhtruong2611
+      </a>
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Tân Phú, Hồ Chí Minh
+      </span>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav-strip">
+    <a href="#summary">Giới thiệu</a>
+    <a href="#experience">Kinh nghiệm</a>
+    <a href="#skills">Kỹ năng</a>
+    <a href="#education">Học vấn</a>
+    <a href="#software">Phần mềm</a>
+  </nav>
+
+  <!-- BODY -->
+  <div class="main-grid">
+
+    <!-- LEFT COLUMN -->
+    <main>
+
+      <!-- SUMMARY -->
+      <section id="summary">
+        <p class="section-label">Giới thiệu</p>
+        <p class="summary-text">
+          Kỹ sư thiết kế cơ khí với nền tảng trong mô phỏng, phân tích FEA và thiết kế đường ống. Mục tiêu trong 3–5 năm tới là áp dụng phân tích kỹ thuật để tối ưu hóa thiết kế, đóng góp vào thành công dự án và sự phát triển của công ty.
+        </p>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <p class="section-label">Kinh nghiệm làm việc</p>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-company">Glocom Trading and Petroleum Services Co., Ltd.</span>
+            <span class="entry-date">Jul 2025 – Nay</span>
+          </div>
+          <p class="entry-role">Mechanical Design Engineer</p>
+          <ul>
+            <li>Thiết kế khung tủ sạc và nameplate sản phẩm.</li>
+            <li>Phát triển hệ thống actuator khí nén và bố trí giá đỡ pin.</li>
+            <li>Thiết kế kết cấu khung và thực hiện tính toán sức bền bồn chứa.</li>
+            <li>Lập MTO/BOM và đánh giá kỹ thuật theo tiêu chuẩn ASME, DIN, ANSI, ISO.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-company">Matsusho Viet Nam Co., Ltd.</span>
+            <span class="entry-date">Nov 2024 – Apr 2025</span>
+          </div>
+          <p class="entry-role">Piping Design Engineer</p>
+          <ul>
+            <li>Thiết kế hệ thống đường ống bằng AutoCAD 2D/3D và Rebro theo tiêu chuẩn JIS.</li>
+            <li>Phân tích và diễn giải bản vẽ P&ID và isometric để triển khai thiết kế và thi công.</li>
+            <li>Thực hiện layout đường ống, thiết kế gối đỡ, lập MTO/BOM và vẽ isometric.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-company">Doctor House Service And Trading Engineering Co., Ltd.</span>
+            <span class="entry-date">Sep 2022 – Oct 2022</span>
+          </div>
+          <p class="entry-role">MEP Shop Drawing Engineer — Intern</p>
+          <ul>
+            <li>Xây dựng bản vẽ shop drawing cho hệ thống cơ điện lạnh (MEP) dựa theo hồ sơ thiết kế và kiến trúc dự án.</li>
+          </ul>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- RIGHT COLUMN -->
+    <aside>
+
+      <!-- TECHNICAL SKILLS -->
+      <section id="skills">
+        <p class="section-label">Kỹ năng chuyên môn</p>
+        <div class="tags">
+          <span class="tag highlight">CAD / 3D Modeling</span>
+          <span class="tag highlight">FEA (Ansys)</span>
+          <span class="tag highlight">Piping Design</span>
+          <span class="tag">P&amp;ID</span>
+          <span class="tag">Isometric Drawing</span>
+          <span class="tag">MTO / BOM</span>
+          <span class="tag">ASME / DIN / ANSI</span>
+          <span class="tag">JIS Standards</span>
+          <span class="tag">Structural Analysis</span>
+          <span class="tag">Tank Design</span>
+          <span class="tag">Pneumatic Systems</span>
+          <span class="tag">Python</span>
+          <span class="tag">MATLAB</span>
+        </div>
+      </section>
+
+      <!-- SOFTWARE -->
+      <section id="software">
+        <p class="section-label">Phần mềm</p>
+        <div>
+          <div class="software-row">
+            <span class="software-name">AutoCAD 2D / 3D</span>
+            <div class="software-bar"><span style="width:90%"></span></div>
+          </div>
+          <div class="software-row">
+            <span class="software-name">SolidWorks</span>
+            <div class="software-bar"><span style="width:80%"></span></div>
+          </div>
+          <div class="software-row">
+            <span class="software-name">Ansys</span>
+            <div class="software-bar"><span style="width:75%"></span></div>
+          </div>
+          <div class="software-row">
+            <span class="software-name">Rebro</span>
+            <div class="software-bar"><span style="width:70%"></span></div>
+          </div>
+          <div class="software-row">
+            <span class="software-name">Inventor</span>
+            <div class="software-bar"><span style="width:65%"></span></div>
+          </div>
+          <div class="software-row">
+            <span class="software-name">Python / MATLAB</span>
+            <div class="software-bar"><span style="width:60%"></span></div>
+          </div>
+          <div class="software-row">
+            <span class="software-name">Microsoft Office</span>
+            <div class="software-bar"><span style="width:85%"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education">
+        <p class="section-label">Học vấn</p>
+        <div class="edu-item">
+          <p class="edu-degree">Kỹ thuật Cơ học (Cơ kỹ thuật)</p>
+          <p class="edu-school">ĐH Bách Khoa TP.HCM (HCMUT)</p>
+          <p class="edu-meta">GPA: 6.2/10 · 2019 – 2025</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Capstone Project</p>
+          <p class="edu-school">Phân tích cốt thép chống đột thủng trong bản sàn BTCT</p>
+          <p class="edu-meta">Apr 2023 – Jun 2023</p>
+        </div>
+      </section>
+
+      <!-- LANGUAGE -->
+      <section>
+        <p class="section-label">Ngôn ngữ</p>
+        <div class="lang-row">
+          <span>Tiếng Việt</span>
+          <span class="lang-badge">Bản ngữ</span>
+        </div>
+        <div class="lang-row">
+          <span>Tiếng Anh</span>
+          <span class="lang-badge">TOEIC 525</span>
+        </div>
+      </section>
+
+      <!-- AWARD -->
+      <section>
+        <p class="section-label">Giải thưởng</p>
+        <div class="award-item">
+          <strong>🏆 Giải Hội thi Khoa học Kỹ thuật 2019</strong>
+          Dự án "Badminton Training Assistant Machine" — Khoa Khoa học Ứng dụng, ĐH Bách Khoa TP.HCM.
+        </div>
+      </section>
+
+    </aside>
+  </div><!-- end .main-grid -->
+
+  <footer>
+    <span>Trương Thành Gia Thịnh · Mechanical Design Engineer</span>
+    <span>thinhyugioh@gmail.com</span>
+  </footer>
+
+</div><!-- end .wrapper -->
+
 </body>
 </html>
