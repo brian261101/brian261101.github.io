@@ -716,7 +716,8 @@ footer {
   .stats { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 860px) {
+/* Nav tieng Viet co 7 muc can ~922px; duoi nguong nay chuyen sang menu mobile. */
+@media (max-width: 980px) {
   .nav-links {
     position: fixed;
     inset: var(--nav-h) 0 auto 0;
@@ -750,4 +751,28 @@ footer {
   .nav, .bg, .bg-glow, .cta, .spool, footer { display: none; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .card, .cc { border-color: #ccc; break-inside: avoid; }
+}
+
+/* ---------- thẻ công cụ (tránh trùng .tool của mục Stack) ---------- */
+.tool-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 11px; }
+.tool-ico { width: 34px; height: 34px; flex: none; color: var(--flame); }
+.toolcard h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+.tool-sub {
+  font-family: var(--mono); font-size: 11.5px; color: var(--steel); margin-top: 2px;
+}
+.toolcard ul { list-style: none; margin-bottom: 12px; }
+.toolcard li {
+  position: relative; padding-left: 19px; margin-bottom: 7px;
+  color: var(--fg-2); font-size: 14px;
+}
+.toolcard li::before {
+  content: ""; position: absolute; left: 2px; top: .62em;
+  width: 7px; height: 7px;
+  border-top: 1.6px solid var(--flame); border-right: 1.6px solid var(--flame);
+  transform: rotate(45deg); opacity: .85;
+}
+.tool-act { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.tool-act .btn { padding: 8px 14px; font-size: 13px; }
+.tool-note {
+  margin-top: 14px; font-size: 13px; color: var(--fg-3); text-align: center;
 }

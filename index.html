@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
-<link rel="stylesheet" href="assets/css/site.css?v=2">
+<link rel="stylesheet" href="assets/css/site.css?v=3">
 
 <script type="application/ld+json">
 {
@@ -135,6 +135,7 @@
       <li><a href="#experience" data-vi="Kinh nghiệm">Experience</a></li>
       <li><a href="#skills"     data-vi="Kỹ năng">Skills</a></li>
       <li><a href="#stack"      data-vi="Phần mềm">Stack</a></li>
+      <li><a href="#tools"      data-vi="Công cụ">Tools</a></li>
       <li><a href="#education"  data-vi="Học vấn">Education</a></li>
       <li><a href="#contact"    data-vi="Liên hệ">Contact</a></li>
     </ul>
@@ -568,6 +569,87 @@
 </section>
 
 
+<!-- ============ tools ============ -->
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1 5 5L9 22H2v-7z"/><path d="m16 5 3 3"/></svg>
+        <span data-vi="Công cụ">Tools</span>
+      </span>
+      <h2 data-vi="Công cụ kỹ thuật tôi tự viết">Engineering tools I built</h2>
+      <p data-vi="Hai công cụ tính toán đường ống chạy thẳng trong trình duyệt — mở ngay tại đây, không cần cài gì. Cả hai đều có nút tự kiểm chứng so kết quả với nghiệm giải tích.">
+        Two piping calculation tools that run entirely in the browser — open them right here,
+        nothing to install. Both ship a self-verification that checks the solver against
+        closed-form solutions.
+      </p>
+    </div>
+
+    <div class="grid-2">
+
+      <article class="card toolcard rv">
+        <div class="tool-top">
+          <svg class="tool-ico" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="2"/>
+            <circle cx="16" cy="16" r="6" stroke="#4fb3d9" stroke-width="2"/>
+          </svg>
+          <div>
+            <h3 data-vi="Chiều dày thành ống">Pipe wall thickness</h3>
+            <div class="tool-sub">ASME B31.3 · B31.1 · B31.8</div>
+          </div>
+        </div>
+        <ul>
+          <li data-vi="Tính t, tₘ, chiều dày đặt hàng tối thiểu và MAWP cho cả dải NPS">Computes t, t<sub>m</sub>, minimum order thickness and MAWP across the whole NPS range</li>
+          <li data-vi="Tự chọn schedule nhẹ nhất còn đạt, có xử lý nhánh thành dày t ≥ D₀/6">Picks the lightest schedule that still passes, and handles the thick-wall branch t ≥ D₀/6</li>
+          <li data-vi="Sàng lọc vật liệu theo lưu chất và nhiệt độ; xuất tờ tính toán PDF">Screens materials by fluid and design temperature; exports a PDF calculation sheet</li>
+        </ul>
+        <div class="chips">
+          <span class="chip hot">ASME B31.3</span><span class="chip">B36.10M</span>
+          <span class="chip">JavaScript</span><span class="chip">no dependencies</span>
+        </div>
+        <div class="tool-act">
+          <a class="btn primary" href="tools/pipe-thickness.html" data-vi="Mở công cụ">Open tool</a>
+          <a class="btn" href="https://brian261101.github.io/pipe-thickness-web/" target="_blank" rel="noopener" data-vi="Toàn màn hình">Full screen</a>
+          <a class="btn" href="https://github.com/brian261101/pipe-thickness-web" target="_blank" rel="noopener" data-vi="Mã nguồn">Source</a>
+        </div>
+      </article>
+
+      <article class="card toolcard rv">
+        <div class="tool-top">
+          <svg class="tool-ico" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M5 21V11l11 5zM27 21V11l-11 5z" fill="currentColor"/>
+            <path d="M16 16V9M11 9h10" stroke="#4fb3d9" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <h3 data-vi="Giá đỡ đường ống">Pipe support analysis</h3>
+            <div class="tool-sub" data-vi="Phần tử hữu hạn khung phẳng">2D frame finite elements</div>
+          </div>
+        </div>
+        <ul>
+          <li data-vi="Phần tử dầm–cột Euler–Bernoulli 2D, 6 bậc tự do, giải K·u = F">Euler–Bernoulli beam-column elements, 6 DOF, solving K·u = F</li>
+          <li data-vi="Ổn định tổng thể bằng bài toán trị riêng (K + λ·Kg)·φ = 0">Global stability from the eigenvalue problem (K + λ·K<sub>g</sub>)·φ = 0</li>
+          <li data-vi="Kiểm tra thanh theo AISC 360 và tự chọn tiết diện nhẹ nhất còn đạt">Member checks to AISC 360, and auto-sizing to the lightest section that passes</li>
+        </ul>
+        <div class="chips">
+          <span class="chip hot">FEM</span><span class="chip">AISC 360</span>
+          <span class="chip">JavaScript</span><span class="chip">no dependencies</span>
+        </div>
+        <div class="tool-act">
+          <a class="btn primary" href="tools/pipe-support.html" data-vi="Mở công cụ">Open tool</a>
+          <a class="btn" href="https://brian261101.github.io/pipe-support-web/" target="_blank" rel="noopener" data-vi="Toàn màn hình">Full screen</a>
+          <a class="btn" href="https://github.com/brian261101/pipe-support-web" target="_blank" rel="noopener" data-vi="Mã nguồn">Source</a>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="tool-note rv" data-vi="Cả hai là công cụ sàng lọc và định cỡ sơ bộ — không thay thế việc kiểm tra của kỹ sư có thẩm quyền.">
+      Both are screening and preliminary-sizing tools — they do not replace review by a
+      qualified engineer.
+    </p>
+  </div>
+</section>
+
 <!-- ============ education ============ -->
 <section id="education">
   <div class="wrap">
@@ -677,6 +759,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=2" defer></script>
+<script src="assets/js/site.js?v=3" defer></script>
 </body>
 </html>
