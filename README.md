@@ -36,6 +36,12 @@ class list for the current role — that is what turns the timeline node amber.
 Drop the new PDF into `assets/cv/` and update the two `href`s that point at it
 (the hero button and the Education card chip).
 
+## After editing CSS or JS
+
+`index.html` links them with a `?v=N` query. Bump that number when you change
+either file, otherwise returning visitors keep the browser-cached copy for a
+while and will not see the change.
+
 ## Notes
 
 - The background is a single inline SVG: a 30° isometric construction grid plus a
