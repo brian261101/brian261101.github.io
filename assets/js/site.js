@@ -53,6 +53,8 @@
       if (html) { el.innerHTML = next; } else { el.textContent = next; }
     });
 
+    renderDurations();
+
     document.querySelectorAll('[data-lang-on]').forEach(function (el) {
       el.classList.toggle('on', el.getAttribute('data-lang-on') === lang);
       el.classList.toggle('off', el.getAttribute('data-lang-on') !== lang);
@@ -71,6 +73,35 @@
       lang = lang === 'vi' ? 'en' : 'vi';
       applyLang(lang);
       store.set('lang', lang);
+    });
+  }
+
+  /* ---------------- thời lượng công việc ----------------
+     LinkedIn đếm cả tháng đầu lẫn tháng cuối, nên Nov 2025 → Sep 2026 là
+     11 tháng. Tính tại chỗ thay vì ghi cứng, để con số của vị trí hiện tại
+     không bị cũ đi theo thời gian.                                        */
+  function monthsBetween(start, end) {
+    var a = start.split('-'), b = end.split('-');
+    return (+b[0] - +a[0]) * 12 + (+b[1] - +a[1]) + 1;
+  }
+
+  function durationText(months, vi) {
+    var y = Math.floor(months / 12), m = months % 12;
+    var out = [];
+    if (y) out.push(y + (vi ? ' năm' : (' yr' + (y > 1 ? 's' : ''))));
+    if (m) out.push(m + (vi ? ' tháng' : (' mo' + (m > 1 ? 's' : ''))));
+    return out.join(' ') || (vi ? 'dưới 1 tháng' : 'less than a month');
+  }
+
+  function renderDurations() {
+    var vi = document.documentElement.lang === 'vi';
+    var now = new Date();
+    var today = now.getFullYear() + '-' +
+      String(now.getMonth() + 1).padStart(2, '0');
+    document.querySelectorAll('.dur[data-start]').forEach(function (el) {
+      var end = el.getAttribute('data-end') || today;
+      el.textContent = durationText(
+        monthsBetween(el.getAttribute('data-start'), end), vi);
     });
   }
 
