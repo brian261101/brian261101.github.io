@@ -157,7 +157,9 @@ svg { display: block; }
 }
 .nav-links a {
   display: block;
-  padding: 7px 11px;
+  /* the Vietnamese labels are longer and were wrapping onto a second line */
+  white-space: nowrap;
+  padding: 7px 10px;
   border-radius: 8px;
   font-size: 13.5px;
   font-weight: 500;
@@ -708,13 +710,13 @@ footer {
 }
 
 /* ---------- responsive ---------- */
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .hero-grid { grid-template-columns: 1fr; gap: 34px; }
   .portrait { order: -1; width: 180px; justify-self: start; }
   .stats { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .nav-links {
     position: fixed;
     inset: var(--nav-h) 0 auto 0;
@@ -727,7 +729,7 @@ footer {
     display: none;
   }
   .nav-links.open { display: flex; }
-  .nav-links a { padding: 11px 6px; font-size: 15px; border-bottom: 1px solid var(--line); border-radius: 0; }
+  .nav-links a { white-space: normal; padding: 11px 6px; font-size: 15px; border-bottom: 1px solid var(--line); border-radius: 0; }
   .burger { display: grid; }
   .nav-tools { margin-left: auto; }
   .hero { padding: 40px 0 34px; }
