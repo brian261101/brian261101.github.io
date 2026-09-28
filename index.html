@@ -1,568 +1,682 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trương Thành Gia Thịnh — Mechanical Design Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Truong Thanh Gia Thinh — Mechanical &amp; Piping Engineer</title>
 
-  :root {
-    --ink: #1a1a18;
-    --ink-soft: #4a4a46;
-    --ink-mute: #8a8a84;
-    --rule: #e0ddd6;
-    --surface: #faf9f6;
-    --white: #ffffff;
-    --accent: #b5893a;
-    --accent-light: #f5eed8;
-    --accent-dark: #7a5c1e;
-    --tag-bg: #f0ede5;
-  }
+<meta name="description" content="Mechanical &amp; Piping Engineer in Ho Chi Minh City. 3D piping models and isometrics in AutoCAD Plant 3D, pipe support design, MTO, pressure vessels and structural calculation for natural gas and industrial plants.">
+<meta name="author" content="Truong Thanh Gia Thinh">
+<meta name="theme-color" content="#0a0f1c">
 
-  html { scroll-behavior: smooth; }
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Truong Thanh Gia Thinh — Mechanical &amp; Piping Engineer">
+<meta property="og:description" content="Piping and mechanical design for natural gas and industrial plants: AutoCAD Plant 3D, isometrics, pipe supports, MTO, pressure equipment.">
+<meta property="og:url" content="https://brian261101.github.io/">
+<meta property="og:image" content="https://brian261101.github.io/assets/img/portrait.jpg">
+<meta name="twitter:card" content="summary">
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--surface);
-    color: var(--ink);
-    font-size: 15px;
-    line-height: 1.65;
-    min-height: 100vh;
-  }
+<link rel="canonical" href="https://brian261101.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0f1c'/%3E%3Cpath d='M6 20V12l10 4zM26 20V12l-10 4z' fill='%23f5a524'/%3E%3Cpath d='M16 16v-6M11 10h10' stroke='%234fb3d9' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
 
-  /* ── LAYOUT ── */
-  .wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 1.5rem 5rem;
-  }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="assets/css/site.css">
 
-  /* ── HEADER ── */
-  header {
-    border-bottom: 1px solid var(--rule);
-    padding: 4rem 0 3rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
-    align-items: end;
-  }
-
-  .name-block h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    color: var(--ink);
-  }
-
-  .name-block h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .name-block .role {
-    margin-top: 0.6rem;
-    font-size: 0.9rem;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-
-  .contact-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    align-items: flex-end;
-    text-align: right;
-  }
-
-  .contact-block a, .contact-block span {
-    font-size: 0.82rem;
-    color: var(--ink-mute);
-    text-decoration: none;
-    transition: color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    justify-content: flex-end;
-  }
-
-  .contact-block a:hover { color: var(--accent); }
-
-  .contact-block svg { width: 13px; height: 13px; flex-shrink: 0; }
-
-  /* ── NAV DOTS ── */
-  .nav-strip {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: var(--surface);
-    border-bottom: 1px solid var(--rule);
-    padding: 0.8rem 0;
-    display: flex;
-    gap: 1.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .nav-strip a {
-    color: var(--ink-mute);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-strip a:hover { color: var(--accent); }
-
-  /* ── MAIN GRID ── */
-  .main-grid {
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 4rem;
-    padding-top: 3.5rem;
-  }
-
-  /* ── SECTION ── */
-  section { margin-bottom: 3rem; }
-
-  .section-label {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-  }
-
-  /* ── SUMMARY ── */
-  .summary-text {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--ink-soft);
-    line-height: 1.7;
-    border-left: 2px solid var(--accent);
-    padding-left: 1.2rem;
-  }
-
-  /* ── EXPERIENCE ENTRIES ── */
-  .entry {
-    padding: 1.4rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .entry:last-child { border-bottom: none; }
-
-  .entry-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.25rem;
-    gap: 1rem;
-  }
-
-  .entry-company {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--ink);
-  }
-
-  .entry-date {
-    font-size: 0.75rem;
-    color: var(--ink-mute);
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-    margin-top: 2px;
-  }
-
-  .entry-role {
-    font-size: 0.8rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent-dark);
-    font-weight: 500;
-    margin-bottom: 0.7rem;
-  }
-
-  .entry ul {
-    padding-left: 1rem;
-    color: var(--ink-soft);
-    font-size: 0.88rem;
-    line-height: 1.7;
-  }
-
-  .entry ul li { margin-bottom: 0.25rem; }
-
-  /* ── SIDEBAR ── */
-  .sidebar section { margin-bottom: 2.5rem; }
-
-  /* ── SKILLS TAGS ── */
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .tag {
-    font-size: 0.75rem;
-    background: var(--tag-bg);
-    color: var(--ink-soft);
-    padding: 0.25rem 0.65rem;
-    border-radius: 2px;
-    font-weight: 400;
-    border: 1px solid var(--rule);
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .tag:hover {
-    background: var(--accent-light);
-    color: var(--accent-dark);
-    border-color: var(--accent);
-  }
-
-  .tag.highlight {
-    background: var(--accent-light);
-    color: var(--accent-dark);
-    border-color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* ── SOFTWARE LIST ── */
-  .software-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.45rem 0;
-    border-bottom: 1px solid var(--rule);
-    font-size: 0.85rem;
-  }
-
-  .software-row:last-child { border-bottom: none; }
-
-  .software-name { color: var(--ink); }
-
-  .software-bar {
-    width: 70px;
-    height: 3px;
-    background: var(--rule);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .software-bar span {
-    display: block;
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-  }
-
-  /* ── EDUCATION ── */
-  .edu-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .edu-item:last-child { border-bottom: none; }
-
-  .edu-degree {
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: var(--ink);
-    margin-bottom: 0.1rem;
-  }
-
-  .edu-school {
-    font-size: 0.8rem;
-    color: var(--ink-soft);
-    margin-bottom: 0.15rem;
-  }
-
-  .edu-meta {
-    font-size: 0.75rem;
-    color: var(--ink-mute);
-  }
-
-  /* ── AWARD ── */
-  .award-item {
-    background: var(--accent-light);
-    border: 1px solid #e8d9b0;
-    border-radius: 4px;
-    padding: 0.8rem 1rem;
-    font-size: 0.82rem;
-    color: var(--accent-dark);
-    line-height: 1.5;
-  }
-
-  .award-item strong { display: block; font-weight: 500; margin-bottom: 0.2rem; color: var(--accent-dark); }
-
-  /* ── LANGUAGE ── */
-  .lang-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
-    font-size: 0.85rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .lang-row:last-child { border-bottom: none; }
-
-  .lang-badge {
-    font-size: 0.7rem;
-    background: var(--tag-bg);
-    border: 1px solid var(--rule);
-    color: var(--ink-mute);
-    padding: 0.15rem 0.5rem;
-    border-radius: 2px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--rule);
-    margin-top: 4rem;
-    padding: 2rem 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.75rem;
-    color: var(--ink-mute);
-  }
-
-  @media (max-width: 660px) {
-    header { grid-template-columns: 1fr; }
-    .contact-block { align-items: flex-start; text-align: left; }
-    .contact-block a, .contact-block span { justify-content: flex-start; }
-    .main-grid { grid-template-columns: 1fr; }
-    .nav-strip { flex-wrap: wrap; gap: 0.75rem; }
-  }
-
-  /* ── PRINT ── */
-  @media print {
-    body { background: white; font-size: 11pt; }
-    .nav-strip { display: none; }
-    .main-grid { grid-template-columns: 1fr 220px; gap: 2.5rem; }
-    header { padding: 2rem 0 1.5rem; }
-  }
-</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Truong Thanh Gia Thinh",
+  "jobTitle": "Mechanical & Piping Engineer",
+  "url": "https://brian261101.github.io/",
+  "image": "https://brian261101.github.io/assets/img/portrait.jpg",
+  "email": "mailto:thinhyugioh@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/thinhtruong2611/",
+    "https://github.com/brian261101"
+  ],
+  "address": { "@type": "PostalAddress", "addressLocality": "Ho Chi Minh City", "addressCountry": "VN" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Ho Chi Minh City University of Technology (HCMUT)" },
+  "knowsAbout": ["Piping design", "AutoCAD Plant 3D", "Isometric drawings", "Pipe supports",
+                 "Material Take-Off", "Pressure vessels", "Natural gas", "Finite element analysis"]
+}
+</script>
 </head>
+
 <body>
 
-<div class="wrapper">
+<!-- ============ background: isometric grid + P&ID symbols ============ -->
+<div class="bg" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <!-- 30 degree isometric construction grid -->
+      <pattern id="iso" width="88" height="50.807" patternUnits="userSpaceOnUse">
+        <path d="M0 50.807 L88 0 M0 0 L88 50.807 M44 0 V50.807"
+              fill="none" stroke-width="1" style="stroke:var(--grid)"/>
+      </pattern>
 
-  <!-- HEADER -->
-  <header>
-    <div class="name-block">
-      <h1>Trương Thành<br><em>Gia Thịnh</em></h1>
-      <p class="role">Mechanical Design Engineer</p>
+      <!-- P&ID symbol library -->
+      <g id="s-gate" stroke-width="1.6" fill="none" stroke-linejoin="round">
+        <path d="M-13-9v18l13-9zM13-9v18l-13-9z"/><path d="M0 0v-13M-8-13h16"/>
+      </g>
+      <g id="s-globe" stroke-width="1.6" fill="none" stroke-linejoin="round">
+        <path d="M-13-9v18l13-9zM13-9v18l-13-9z"/><circle cx="0" cy="0" r="6"/><path d="M0-6v-9M-8-15h16"/>
+      </g>
+      <g id="s-check" stroke-width="1.6" fill="none" stroke-linejoin="round">
+        <rect x="-14" y="-9" width="28" height="18"/><path d="M-14 9 L10-7"/>
+      </g>
+      <g id="s-inst" stroke-width="1.6" fill="none">
+        <circle cx="0" cy="0" r="12"/><path d="M-12 0h24"/>
+      </g>
+      <g id="s-red" stroke-width="1.6" fill="none" stroke-linejoin="round">
+        <path d="M-15-6 L15-11 V11 L-15 6 Z"/>
+      </g>
+      <g id="s-flange" stroke-width="1.6" fill="none" stroke-linecap="round">
+        <path d="M-5-13v26M5-13v26M-16 0h11M5 0h11"/>
+      </g>
+      <g id="s-pump" stroke-width="1.6" fill="none" stroke-linejoin="round">
+        <circle cx="0" cy="0" r="12"/><path d="M-12 0 L6-10 V10 Z"/>
+      </g>
+      <g id="s-psv" stroke-width="1.6" fill="none" stroke-linejoin="round">
+        <path d="M-12 10 V-2 L0 4 V-8 L12-2 V10 Z"/><path d="M0-8 V-16"/>
+      </g>
+      <g id="s-vessel" stroke-width="1.6" fill="none">
+        <rect x="-11" y="-16" width="22" height="32" rx="11"/><path d="M-11 0h22"/>
+      </g>
+      <g id="s-elbow" stroke-width="1.6" fill="none" stroke-linecap="round">
+        <path d="M-15 12 H0 A12 12 0 0 0 12 0 V-14"/>
+      </g>
+      <g id="s-weld" stroke-width="1.6" fill="none">
+        <circle cx="0" cy="0" r="4"/><path d="M-11 0h7M4 0h7"/>
+      </g>
+
+      <!-- scattered symbol field -->
+      <pattern id="sym" width="430" height="360" patternUnits="userSpaceOnUse">
+        <g style="stroke:var(--sym)">
+          <use href="#s-gate"   transform="translate(56 52) rotate(30)"/>
+          <use href="#s-inst"   transform="translate(196 38)"/>
+          <use href="#s-red"    transform="translate(330 74) rotate(-30)"/>
+          <use href="#s-elbow"  transform="translate(400 190)"/>
+          <use href="#s-check"  transform="translate(120 150) rotate(-30)"/>
+          <use href="#s-vessel" transform="translate(262 168)"/>
+          <use href="#s-psv"    transform="translate(36 214)"/>
+          <use href="#s-flange" transform="translate(164 258) rotate(30)"/>
+          <use href="#s-globe"  transform="translate(300 292) rotate(30)"/>
+          <use href="#s-pump"   transform="translate(404 316)"/>
+          <use href="#s-weld"   transform="translate(96 326) rotate(-30)"/>
+          <use href="#s-gate"   transform="translate(232 108) rotate(-30)"/>
+        </g>
+      </pattern>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#iso)"/>
+    <rect width="100%" height="100%" fill="url(#sym)"/>
+  </svg>
+</div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+
+<!-- ============ nav ============ -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Home">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M5 21V11l11 5zM27 21V11l-11 5z" fill="currentColor"/>
+        <path d="M16 16v-7M11 9h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span>TGT<span class="dim">&#8202;/&#8202;piping</span></span>
+    </a>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#profile"    data-vi="Giới thiệu">Profile</a></li>
+      <li><a href="#experience" data-vi="Kinh nghiệm">Experience</a></li>
+      <li><a href="#skills"     data-vi="Kỹ năng">Skills</a></li>
+      <li><a href="#stack"      data-vi="Phần mềm">Stack</a></li>
+      <li><a href="#education"  data-vi="Học vấn">Education</a></li>
+      <li><a href="#contact"    data-vi="Liên hệ">Contact</a></li>
+    </ul>
+
+    <div class="nav-tools">
+      <button class="icon-btn lang-btn" id="lang-btn" type="button" title="English / Tiếng Việt" aria-label="Switch language">
+        <span data-lang-on="en">EN</span><span class="dim">&#8202;·&#8202;</span><span data-lang-on="vi">VI</span>
+      </button>
+
+      <button class="icon-btn" id="theme-btn" type="button" title="Light / dark" aria-label="Toggle theme">
+        <svg data-theme-icon="dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>
+        </svg>
+        <svg data-theme-icon="light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden>
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+
+      <a class="icon-btn" href="https://www.linkedin.com/in/thinhtruong2611/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.3c0-1.26-.02-2.9-1.8-2.9-1.8 0-2.07 1.38-2.07 2.8V21H9z"/></svg>
+      </a>
+
+      <a class="icon-btn" href="https://github.com/brian261101" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+      </a>
+
+      <button class="icon-btn burger" id="burger" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
     </div>
-    <div class="contact-block">
-      <a href="tel:0332044085">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1 19.79 19.79 0 0 1 1.61 4.5 2 2 0 0 1 3.6 2.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        0332 044 085
-      </a>
-      <a href="mailto:thinhyugioh@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        thinhyugioh@gmail.com
-      </a>
-      <a href="https://www.linkedin.com/in/thinhtruong2611" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-        linkedin/thinhtruong2611
-      </a>
-      <span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Tân Phú, Hồ Chí Minh
-      </span>
-    </div>
-  </header>
+  </div>
+</nav>
 
-  <!-- NAV -->
-  <nav class="nav-strip">
-    <a href="#summary">Giới thiệu</a>
-    <a href="#experience">Kinh nghiệm</a>
-    <a href="#skills">Kỹ năng</a>
-    <a href="#education">Học vấn</a>
-    <a href="#software">Phần mềm</a>
-  </nav>
 
-  <!-- BODY -->
-  <div class="main-grid">
+<!-- ============ hero ============ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="tag-term">
+          <span class="dot"></span>
+          <span data-vi="~/kỹ-sư-đường-ống">~/piping-engineer</span>
+          <b>·</b>
+          <span>Ho Chi Minh City, VN</span>
+        </span>
 
-    <!-- LEFT COLUMN -->
-    <main>
+        <h1 class="name">Truong Thanh<br><span class="accent">Gia Thinh</span></h1>
 
-      <!-- SUMMARY -->
-      <section id="summary">
-        <p class="section-label">Giới thiệu</p>
-        <p class="summary-text">
-          Kỹ sư thiết kế cơ khí với nền tảng trong mô phỏng, phân tích FEA và thiết kế đường ống. Mục tiêu trong 3–5 năm tới là áp dụng phân tích kỹ thuật để tối ưu hóa thiết kế, đóng góp vào thành công dự án và sự phát triển của công ty.
+        <p class="role">
+          <span data-vi="Kỹ sư Cơ khí &amp; Đường ống">Mechanical &amp; Piping Engineer</span>
+          <span class="sep">/</span>
+          <span data-vi="Khí tự nhiên">Natural Gas</span>
+          <span class="sep">/</span>
+          <span>Plant 3D</span>
         </p>
-      </section>
 
-      <!-- EXPERIENCE -->
-      <section id="experience">
-        <p class="section-label">Kinh nghiệm làm việc</p>
+        <p class="lede"
+           data-vi-html="Nền tảng vững về <b>đường ống và cơ khí</b>, đang xây dựng sự nghiệp chuyên sâu trong mảng piping. Công việc hằng ngày của tôi: dựng <b>mô hình đường ống 3D</b> và xuất <b>isometric</b>, thiết kế <b>gối đỡ ống</b>, bóc tách <b>MTO</b>, và tính toán cho <b>thiết bị chịu áp</b> cùng kết cấu thép.">
+          A solid foundation in <b>piping and mechanical engineering</b>, building a focused career in the piping discipline. Day to day that means <b>3D piping models</b> and <b>isometrics</b>, <b>pipe support design</b>, <b>material take-off</b>, and calculation for <b>pressure equipment</b> and steel structures.
+        </p>
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">Glocom Trading and Petroleum Services Co., Ltd.</span>
-            <span class="entry-date">Jul 2025 – Nay</span>
-          </div>
-          <p class="entry-role">Mechanical Design Engineer</p>
-          <ul>
-            <li>Thiết kế khung tủ sạc và nameplate sản phẩm.</li>
-            <li>Phát triển hệ thống actuator khí nén và bố trí giá đỡ pin.</li>
-            <li>Thiết kế kết cấu khung và thực hiện tính toán sức bền bồn chứa.</li>
-            <li>Lập MTO/BOM và đánh giá kỹ thuật theo tiêu chuẩn ASME, DIN, ANSI, ISO.</li>
-          </ul>
+        <div class="cta">
+          <a class="btn primary" href="assets/cv/CV_TruongThanhGiaThinh_2026.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            <span data-vi="Tải CV (PDF)">Download CV</span>
+          </a>
+          <a class="btn" href="mailto:thinhyugioh@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span data-vi="Gửi email">Email me</span>
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/thinhtruong2611/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.3c0-1.26-.02-2.9-1.8-2.9-1.8 0-2.07 1.38-2.07 2.8V21H9z"/></svg>
+            LinkedIn
+          </a>
         </div>
+      </div>
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">Matsusho Viet Nam Co., Ltd.</span>
-            <span class="entry-date">Nov 2024 – Apr 2025</span>
-          </div>
-          <p class="entry-role">Piping Design Engineer</p>
-          <ul>
-            <li>Thiết kế hệ thống đường ống bằng AutoCAD 2D/3D và Rebro theo tiêu chuẩn JIS.</li>
-            <li>Phân tích và diễn giải bản vẽ P&ID và isometric để triển khai thiết kế và thi công.</li>
-            <li>Thực hiện layout đường ống, thiết kế gối đỡ, lập MTO/BOM và vẽ isometric.</li>
-          </ul>
+      <figure class="portrait">
+        <img src="assets/img/portrait.jpg" width="760" height="760"
+             alt="Portrait of Truong Thanh Gia Thinh" fetchpriority="high">
+        <figcaption class="plate">B.Eng · HCMUT 2025</figcaption>
+      </figure>
+    </div>
+
+    <!-- isometric spool -->
+    <div class="spool rv">
+      <div class="cap">
+        <span class="lamp a"></span><span class="lamp"></span><span class="lamp"></span>
+        <span>ISO&#8209;NG&#8209;001&nbsp;&nbsp;·&nbsp;&nbsp;natural gas service&nbsp;&nbsp;·&nbsp;&nbsp;sheet 1 of 1</span>
+      </div>
+
+      <svg viewBox="0 0 760 330" role="img"
+           aria-label="Isometric piping spool drawing with a gate valve, reducer, tee, instrument and check valve">
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+          <!-- support post + base -->
+          <g style="stroke:var(--line-2)" stroke-width="2">
+            <path d="M400 238 V296"/>
+            <path d="M372 296 H428"/>
+            <path d="M376 306 l8-10M390 306 l8-10M404 306 l8-10M418 306 l8-10" stroke-width="1.5"/>
+          </g>
+
+          <!-- pipe outer wall -->
+          <path d="M40 150 L220 254 L220 134 L400 238 L580 134 L720 215"
+                style="stroke:var(--steel)" stroke-width="15" opacity=".26"/>
+          <!-- pipe centre -->
+          <path d="M40 150 L220 254 L220 134 L400 238 L580 134 L720 215"
+                style="stroke:var(--steel)" stroke-width="2.4"/>
+          <!-- flow -->
+          <path class="flow" d="M40 150 L220 254 L220 134 L400 238 L580 134 L720 215"
+                style="stroke:var(--flame)" stroke-width="5"/>
+
+          <!-- weld beads at the elbows -->
+          <g style="stroke:var(--weld)" stroke-width="2" opacity=".9">
+            <circle cx="220" cy="254" r="5"/>
+            <circle cx="220" cy="134" r="5"/>
+            <circle cx="400" cy="238" r="5"/>
+            <circle cx="580" cy="134" r="5"/>
+          </g>
+
+          <!-- terminal flange N1 -->
+          <g transform="translate(40 150) rotate(30)" style="stroke:var(--fg-2)" stroke-width="2.2">
+            <path d="M0-17 V17 M10-17 V17"/>
+            <circle cx="5" cy="-12" r="1.6" fill="currentColor"/>
+            <circle cx="5" cy="12" r="1.6" fill="currentColor"/>
+          </g>
+
+          <!-- gate valve -->
+          <g transform="translate(126 199) rotate(30)" style="stroke:var(--flame)" stroke-width="2.4">
+            <path d="M-17-12 V12 L0 0 Z"/><path d="M17-12 V12 L0 0 Z"/>
+            <path d="M0 0 V-20 M-11-20 H11"/>
+          </g>
+
+          <!-- concentric reducer -->
+          <g transform="translate(312 191) rotate(30)" style="stroke:var(--fg-2)" stroke-width="2.2">
+            <path d="M-17-6 L17-12 V12 L-17 6 Z"/>
+          </g>
+
+          <!-- tee + instrument bubble -->
+          <g style="stroke:var(--steel)" stroke-width="2.4">
+            <path d="M490 186 V112"/>
+          </g>
+          <g transform="translate(490 92)" style="stroke:var(--flame)" stroke-width="2.2">
+            <circle cx="0" cy="0" r="19" style="fill:var(--panel)"/>
+            <path d="M-19 0 H19"/>
+          </g>
+          <text x="490" y="86" text-anchor="middle" style="fill:var(--fg-2)"
+                font-family="JetBrains Mono, monospace" font-size="11">PI</text>
+          <text x="490" y="103" text-anchor="middle" style="fill:var(--fg-3)"
+                font-family="JetBrains Mono, monospace" font-size="10">101</text>
+
+          <!-- check valve -->
+          <g transform="translate(655 176) rotate(30)" style="stroke:var(--weld)" stroke-width="2.2">
+            <rect x="-17" y="-11" width="34" height="22" rx="2" style="fill:var(--panel)"/>
+            <path d="M-17 11 L12-8"/>
+          </g>
+
+          <!-- iso axis key -->
+          <g transform="translate(694 296)" style="stroke:var(--fg-3)" stroke-width="1.6">
+            <path d="M0 0 L26 15M0 0 L-26 15M0 0 V-28"/>
+            <text x="30" y="20" style="fill:var(--fg-3)" font-family="JetBrains Mono, monospace" font-size="9">E</text>
+            <text x="-38" y="20" style="fill:var(--fg-3)" font-family="JetBrains Mono, monospace" font-size="9">N</text>
+            <text x="4" y="-32" style="fill:var(--fg-3)" font-family="JetBrains Mono, monospace" font-size="9">UP</text>
+          </g>
+
+          <!-- annotations -->
+          <g font-family="JetBrains Mono, monospace" font-size="11" style="fill:var(--fg-3)">
+            <text x="42" y="128">N1 &#9473; DN150</text>
+            <text x="96" y="248">GATE VALVE</text>
+            <text x="286" y="232">REDUCER 150&#215;100</text>
+            <text x="604" y="150">CHECK</text>
+            <text x="352" y="322" text-anchor="middle">PIPE SUPPORT</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- stats -->
+    <div class="stats rv">
+      <div class="stat"><div class="n">04</div><div class="k" data-vi="Vị trí kỹ thuật">Engineering roles</div></div>
+      <div class="stat"><div class="n">2024</div><div class="k" data-vi="Làm thiết kế từ">In design since</div></div>
+      <div class="stat"><div class="n">07</div><div class="k" data-vi="Phần mềm CAD / CAE">CAD / CAE tools</div></div>
+      <div class="stat"><div class="n">B.Eng</div><div class="k" data-vi="Cơ kỹ thuật · HCMUT">Eng. Mechanics · HCMUT</div></div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============ profile ============ -->
+<section id="profile">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <span data-vi="Giới thiệu">Profile</span>
+      </span>
+      <h2 data-vi="Định hướng nghề nghiệp">Where I am heading</h2>
+      <p data-vi="Trích từ CV 2026 — không phải khẩu hiệu, mà là lộ trình tôi đang đi theo.">Taken from my 2026 CV — not a slogan, but the path I am actually following.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card rv">
+        <h3 class="skill-card" style="font-size:.95rem;font-weight:700;margin-bottom:8px">
+          <span class="chip hot">1&#8211;2 <span data-vi="năm">yrs</span></span>
+        </h3>
+        <p style="color:var(--fg-2);font-size:14.2px"
+           data-vi="Đào sâu chuyên môn kỹ thuật và mở rộng hiểu biết về hệ tiêu chuẩn thiết kế quốc tế.">
+          Deepen technical expertise and broaden my working knowledge of international engineering standards.
+        </p>
+      </div>
+      <div class="card rv">
+        <h3 class="skill-card" style="font-size:.95rem;font-weight:700;margin-bottom:8px">
+          <span class="chip hot">3&#8211;5 <span data-vi="năm">yrs</span></span>
+        </h3>
+        <p style="color:var(--fg-2);font-size:14.2px"
+           data-vi="Tiến tới vị trí Senior Piping Engineer — nhận trách nhiệm thiết kế lớn hơn và dẫn dắt nhóm kỹ thuật.">
+          Advance into a <b>Senior Piping Engineer</b> role, taking greater design responsibility and leading engineering teams.
+        </p>
+      </div>
+      <div class="card rv">
+        <h3 class="skill-card" style="font-size:.95rem;font-weight:700;margin-bottom:8px">
+          <span class="chip hot" data-vi="dài hạn">long term</span>
+        </h3>
+        <p style="color:var(--fg-2);font-size:14.2px"
+           data-vi="Phát triển thành Lead Piping Engineer, chịu trách nhiệm triển khai trọn vẹn một dự án.">
+          Grow into a <b>Lead Piping Engineer</b> overseeing full project execution.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ experience ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        <span data-vi="Kinh nghiệm">Experience</span>
+      </span>
+      <h2 data-vi="Kinh nghiệm làm việc">Work experience</h2>
+    </div>
+
+    <div class="tl">
+
+      <!-- VNergy -->
+      <article class="job now card rv">
+        <div class="job-top">
+          <h3 data-vi="Kỹ sư Cơ khí &amp; Đường ống">Mechanical &amp; Piping Engineer</h3>
+          <span class="when">Nov 2025 &#8211; <span data-vi="Nay">Now</span></span>
         </div>
-
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-company">Doctor House Service And Trading Engineering Co., Ltd.</span>
-            <span class="entry-date">Sep 2022 – Oct 2022</span>
-          </div>
-          <p class="entry-role">MEP Shop Drawing Engineer — Intern</p>
-          <ul>
-            <li>Xây dựng bản vẽ shop drawing cho hệ thống cơ điện lạnh (MEP) dựa theo hồ sơ thiết kế và kiến trúc dự án.</li>
-          </ul>
+        <div class="co">Viet Nam Energy Technology Development Consulting Co., Ltd. (VNergy)</div>
+        <ul>
+          <li data-vi="Dựng mô hình đường ống 3D chi tiết và xuất bản vẽ Isometric bằng AutoCAD 2D/3D và AutoCAD Plant 3D, đảm bảo chính xác và tuân thủ P&amp;ID của khách hàng cùng các tiêu chuẩn áp dụng.">Developed detailed 3D piping models and generated isometric drawings using AutoCAD 2D/3D and AutoCAD Plant 3D, to the client P&amp;ID and the applicable engineering standards.</li>
+          <li data-vi="Thiết kế gối đỡ ống và khung đỡ kết cấu — chọn loại gối, định cỡ và bố trí vị trí để bảo đảm tính toàn vẹn cơ khí và khả năng thi công.">Designed pipe supports and structural support frames — support type selection, sizing and positioning for mechanical integrity and constructability.</li>
+          <li data-vi="Lập MTO đầy đủ bằng cách bóc tách và thống kê toàn bộ chi tiết ống, gối đỡ và phụ kiện từ mô hình 3D, phục vụ mua sắm và dự toán.">Prepared complete material take-offs by extracting and quantifying every piping component, support and fitting from the 3D model, supporting procurement and cost estimation.</li>
+          <li data-vi="Phối hợp với các nhóm dự án để phát hành bản vẽ thi công và chế tạo, giữ tính nhất quán giữa mọi đầu mục thiết kế.">Worked with the project teams to produce construction and fabrication drawings, keeping every deliverable consistent with the project specification.</li>
+          <li data-vi="Tham gia design review, tiếp thu phản hồi từ thi công và QC để xử lý va chạm, tăng độ chính xác và hiệu quả lắp đặt.">Took part in design reviews and fed back comments from construction and QC to resolve clashes and improve installation efficiency.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip hot">AutoCAD Plant 3D</span><span class="chip">Isometrics</span>
+          <span class="chip">Pipe supports</span><span class="chip">MTO</span><span class="chip">P&amp;ID</span>
         </div>
+      </article>
 
-      </section>
-
-    </main>
-
-    <!-- RIGHT COLUMN -->
-    <aside>
-
-      <!-- TECHNICAL SKILLS -->
-      <section id="skills">
-        <p class="section-label">Kỹ năng chuyên môn</p>
-        <div class="tags">
-          <span class="tag highlight">CAD / 3D Modeling</span>
-          <span class="tag highlight">FEA (Ansys)</span>
-          <span class="tag highlight">Piping Design</span>
-          <span class="tag">P&amp;ID</span>
-          <span class="tag">Isometric Drawing</span>
-          <span class="tag">MTO / BOM</span>
-          <span class="tag">ASME / DIN / ANSI</span>
-          <span class="tag">JIS Standards</span>
-          <span class="tag">Structural Analysis</span>
-          <span class="tag">Tank Design</span>
-          <span class="tag">Pneumatic Systems</span>
-          <span class="tag">Python</span>
-          <span class="tag">MATLAB</span>
+      <!-- GLOCOM -->
+      <article class="job card rv">
+        <div class="job-top">
+          <h3 data-vi="Kỹ sư Thiết kế Cơ khí">Mechanical Design Engineer</h3>
+          <span class="when">Jul 2025 &#8211; Nov 2025</span>
         </div>
-      </section>
-
-      <!-- SOFTWARE -->
-      <section id="software">
-        <p class="section-label">Phần mềm</p>
-        <div>
-          <div class="software-row">
-            <span class="software-name">AutoCAD 2D / 3D</span>
-            <div class="software-bar"><span style="width:90%"></span></div>
-          </div>
-          <div class="software-row">
-            <span class="software-name">SolidWorks</span>
-            <div class="software-bar"><span style="width:80%"></span></div>
-          </div>
-          <div class="software-row">
-            <span class="software-name">Ansys</span>
-            <div class="software-bar"><span style="width:75%"></span></div>
-          </div>
-          <div class="software-row">
-            <span class="software-name">Rebro</span>
-            <div class="software-bar"><span style="width:70%"></span></div>
-          </div>
-          <div class="software-row">
-            <span class="software-name">Inventor</span>
-            <div class="software-bar"><span style="width:65%"></span></div>
-          </div>
-          <div class="software-row">
-            <span class="software-name">Python / MATLAB</span>
-            <div class="software-bar"><span style="width:60%"></span></div>
-          </div>
-          <div class="software-row">
-            <span class="software-name">Microsoft Office</span>
-            <div class="software-bar"><span style="width:85%"></span></div>
-          </div>
+        <div class="co">Glocom Trading and Petroleum Services Company Limited (GLOCOM)</div>
+        <ul>
+          <li data-vi="Thiết kế bản vẽ kỹ thuật 2D/3D cho bồn chịu áp, bồn chứa, skid và khung nâng, bảo đảm tuân thủ tiêu chuẩn và độ chính xác chế tạo.">Designed 2D/3D engineering drawings for pressure vessels, storage tanks, skids and lifting frames, to industry standards and fabrication accuracy.</li>
+          <li data-vi="Đánh giá và chọn thiết bị cơ khí — bơm, van, quạt, động cơ — theo yêu cầu kỹ thuật của khách hàng và điều kiện công nghệ.">Evaluated and specified mechanical components — pumps, valves, fans and motors — against client requirements and process conditions.</li>
+          <li data-vi="Thực hiện tính toán cơ khí và kết cấu: chiều dày thành, phân tích tải nâng, kiểm tra sức bền gối đỡ; lập báo cáo tính toán và bảng tính thiết kế.">Carried out mechanical and structural calculation — wall thickness, lifting load analysis, support strength — and compiled the calculation reports and design spreadsheets.</li>
+          <li data-vi="Lập MTO và BOM chính xác phục vụ dự toán, đấu thầu và mua sắm.">Produced accurate material take-offs and bills of materials for cost estimation, tendering and procurement.</li>
+          <li data-vi="Soát xét bản vẽ thiết kế và chế tạo để kiểm tra khả năng gia công, độ chính xác kích thước và tính nhất quán, giảm làm lại và chậm tiến độ.">Reviewed design and fabrication drawings for manufacturability, dimensional accuracy and consistency, cutting rework and production delay.</li>
+          <li data-vi="Biên soạn quy trình kỹ thuật và hướng dẫn công việc cho lắp đặt, vận hành, bảo trì phòng ngừa và công tác nâng hạ.">Authored technical procedures and work instructions for installation, operation, preventive maintenance and lifting activities.</li>
+          <li data-vi="Khảo sát hiện trường và chủ trì công tác cải hoán, retrofit thiết bị và kết cấu hiện hữu trong ràng buộc vận hành thực tế.">Performed site surveys and led modification and retrofit work on existing equipment and structures within live operating constraints.</li>
+          <li data-vi="Hỗ trợ kỹ thuật trực tiếp cho nhóm chế tạo và QC: giải đáp vướng mắc, làm rõ ý đồ thiết kế, giữ chất lượng và tiến độ.">Gave hands-on support to the fabrication and QC teams, resolving engineering queries and clarifying design intent.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip hot">Pressure vessels</span><span class="chip">Storage tanks</span>
+          <span class="chip">Skids</span><span class="chip">Lifting frames</span>
+          <span class="chip">MTO / BOM</span><span class="chip">Calculation reports</span>
         </div>
-      </section>
+      </article>
 
-      <!-- EDUCATION -->
-      <section id="education">
-        <p class="section-label">Học vấn</p>
-        <div class="edu-item">
-          <p class="edu-degree">Kỹ thuật Cơ học (Cơ kỹ thuật)</p>
-          <p class="edu-school">ĐH Bách Khoa TP.HCM (HCMUT)</p>
-          <p class="edu-meta">GPA: 6.2/10 · 2019 – 2025</p>
+      <!-- Matsusho -->
+      <article class="job card rv">
+        <div class="job-top">
+          <h3 data-vi="Kỹ sư Thiết kế Đường ống">Piping Design Engineer</h3>
+          <span class="when">Nov 2024 &#8211; Apr 2025</span>
         </div>
-        <div class="edu-item">
-          <p class="edu-degree">Capstone Project</p>
-          <p class="edu-school">Phân tích cốt thép chống đột thủng trong bản sàn BTCT</p>
-          <p class="edu-meta">Apr 2023 – Jun 2023</p>
+        <div class="co">Matsusho Viet Nam Co., Ltd.</div>
+        <span class="proj" data-vi="Dự án: Shibaura Panasonic">Project: Shibaura Panasonic</span>
+        <ul>
+          <li data-vi="Phân tích hồ sơ P&amp;ID do khách hàng cung cấp và chuyển thành bản vẽ đường ống 3D và khung đỡ chi tiết bằng Rebro, dưới sự giám sát của quản lý dự án.">Analysed client P&amp;ID documentation and translated it into detailed 3D piping and support frame drawings in Rebro, under the project manager's supervision.</li>
+          <li data-vi="Cùng nhóm dự án phát hành bản vẽ thi công, bản vẽ chế tạo gối đỡ và isometric trong AutoCAD, bám sát tiêu chuẩn kỹ thuật và spec dự án.">Delivered construction drawings, support fabrication drawings and isometrics in AutoCAD with the project team, holding to the technical standards and project specification.</li>
+          <li data-vi="Tham gia các buổi design review và thúc đẩy tối ưu hoá để tăng khả năng thi công, phát hiện sớm xung đột thiết kế.">Contributed to design review sessions and drove optimisation to improve constructability and catch design conflicts early.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip hot">Rebro</span><span class="chip">AutoCAD</span>
+          <span class="chip">P&amp;ID</span><span class="chip">Isometrics</span><span class="chip">Support frames</span>
         </div>
-      </section>
+      </article>
 
-      <!-- LANGUAGE -->
-      <section>
-        <p class="section-label">Ngôn ngữ</p>
-        <div class="lang-row">
-          <span>Tiếng Việt</span>
-          <span class="lang-badge">Bản ngữ</span>
+      <!-- Doctor House -->
+      <article class="job card rv">
+        <div class="job-top">
+          <h3 data-vi="Thực tập sinh Kỹ sư Shop Drawing MEP">MEP Shop Drawing Engineer — Intern</h3>
+          <span class="when">Sep 2022 &#8211; Oct 2022</span>
         </div>
-        <div class="lang-row">
-          <span>Tiếng Anh</span>
-          <span class="lang-badge">TOEIC 525</span>
+        <div class="co">Doctor House Service And Trading Engineering Company Limited</div>
+        <ul>
+          <li data-vi="Triển khai shop drawing chi tiết cho hệ cơ &#8211; điện &#8211; nước (MEP) dựa trên spec dự án và hồ sơ kiến trúc.">Developed detailed shop drawings for mechanical, electrical and plumbing systems from the project specification and architectural drawings.</li>
+        </ul>
+        <div class="chips"><span class="chip">MEP</span><span class="chip">Shop drawings</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ skills ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a4 4 0 0 1 5 5L9 22H2v-7z"/><path d="m16 5 3 3"/></svg>
+        <span data-vi="Kỹ năng">Skills</span>
+      </span>
+      <h2 data-vi="Năng lực kỹ thuật">Technical capability</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="card skill-card rv">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 12 7l9 10"/><circle cx="12" cy="7" r="2"/><path d="M3 21h18"/></svg>
+          <span data-vi="Thiết kế đường ống">Piping design</span>
+        </h3>
+        <ul>
+          <li data-vi="Mô hình và định tuyến đường ống 3D">3D piping modelling and routing</li>
+          <li data-vi="Xuất bản vẽ isometric">Isometric drawing generation</li>
+          <li data-vi="Thiết kế và định cỡ gối đỡ ống">Pipe support design and sizing</li>
+          <li data-vi="Đọc và triển khai P&amp;ID">P&amp;ID interpretation</li>
+          <li data-vi="Bóc tách MTO từ mô hình">Material take-off from the model</li>
+          <li data-vi="Kiểm tra va chạm và design review">Clash detection and design review</li>
+        </ul>
+      </div>
+
+      <div class="card skill-card rv">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="16" rx="7"/><path d="M5 12h14"/></svg>
+          <span data-vi="Thiết bị tĩnh &amp; cơ khí">Static equipment</span>
+        </h3>
+        <ul>
+          <li data-vi="Bồn chịu áp và bồn chứa">Pressure vessels and storage tanks</li>
+          <li data-vi="Skid và khung nâng">Skids and lifting frames</li>
+          <li data-vi="Tính chiều dày thành, tải nâng">Wall thickness and lifting load</li>
+          <li data-vi="Kiểm tra sức bền gối đỡ">Support strength assessment</li>
+          <li data-vi="Chọn bơm, van, quạt, động cơ">Pump, valve, fan and motor selection</li>
+          <li data-vi="Soát xét bản vẽ chế tạo, BOM">Fabrication drawing and BOM review</li>
+        </ul>
+      </div>
+
+      <div class="card skill-card rv">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 19V9m4 10V5m4 14v-7m4 7V8"/></svg>
+          <span data-vi="Phân tích &amp; hồ sơ">Analysis &amp; documentation</span>
+        </h3>
+        <ul>
+          <li data-vi="Phân tích phần tử hữu hạn (Ansys)">Finite element analysis (Ansys)</li>
+          <li data-vi="Báo cáo tính toán kết cấu">Structural calculation reports</li>
+          <li data-vi="Bảng tính thiết kế có cấu trúc">Structured design spreadsheets</li>
+          <li data-vi="Quy trình kỹ thuật, hướng dẫn công việc">Technical procedures and work instructions</li>
+          <li data-vi="Khảo sát hiện trường, cải hoán">Site survey and retrofit</li>
+          <li data-vi="Hỗ trợ kỹ thuật cho chế tạo &amp; QC">Technical support to fabrication and QC</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-head rv" style="margin-top:34px;margin-bottom:0">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <span data-vi="Hệ tiêu chuẩn đã làm việc">Standards worked to</span>
+      </span>
+      <div class="codes">
+        <span class="code">ASME</span>
+        <span class="code">ANSI</span>
+        <span class="code">DIN</span>
+        <span class="code">ISO</span>
+        <span class="code">JIS</span>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--fg-3)"
+         data-vi="Bộ tiêu chuẩn cụ thể áp dụng theo từng dự án và yêu cầu của khách hàng.">
+        The specific code editions applied vary by project and client requirement.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ stack ============ -->
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
+        <span data-vi="Phần mềm">Stack</span>
+      </span>
+      <h2 data-vi="Công cụ tôi dùng hằng ngày">Tools I work in</h2>
+    </div>
+
+    <div class="tools rv">
+      <div class="tool core"><span class="sq"></span><div>AutoCAD Plant 3D<small data-vi="đường ống · iso · MTO">piping · iso · MTO</small></div></div>
+      <div class="tool core"><span class="sq"></span><div>AutoCAD 2D / 3D<small data-vi="bản vẽ thi công">construction drawings</small></div></div>
+      <div class="tool core"><span class="sq"></span><div>Rebro<small data-vi="đường ống &amp; MEP">piping &amp; MEP</small></div></div>
+      <div class="tool"><span class="sq"></span><div>SolidWorks<small data-vi="mô hình chi tiết">part modelling</small></div></div>
+      <div class="tool"><span class="sq"></span><div>Inventor<small data-vi="cụm lắp ráp">assemblies</small></div></div>
+      <div class="tool"><span class="sq"></span><div>Ansys<small>FEA</small></div></div>
+      <div class="tool"><span class="sq"></span><div>Python<small data-vi="tự động hoá tính toán">calculation scripting</small></div></div>
+      <div class="tool"><span class="sq"></span><div>MATLAB<small data-vi="phân tích số">numerical analysis</small></div></div>
+      <div class="tool"><span class="sq"></span><div>HTML · CSS · JS<small data-vi="công cụ nội bộ">internal tooling</small></div></div>
+      <div class="tool"><span class="sq"></span><div>Microsoft Office<small data-vi="báo cáo &amp; bảng tính">reports &amp; sheets</small></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ education ============ -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m12 4 10 5-10 5L2 9z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+        <span data-vi="Học vấn">Education</span>
+      </span>
+      <h2 data-vi="Học vấn &amp; ghi nhận">Education &amp; recognition</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card edu rv">
+        <div class="deg" data-vi="Kỹ sư Cơ kỹ thuật">Bachelor of Engineering Mechanics</div>
+        <div class="sch" data-vi="Trường Đại học Bách khoa TP. Hồ Chí Minh (HCMUT)">Ho Chi Minh City University of Technology (HCMUT)</div>
+        <div class="meta">Sep 2019 &#8211; Nov 2025 &nbsp;·&nbsp; GPA 6.2 / 10</div>
+        <hr>
+        <div class="sub-t" data-vi="Đồ án tốt nghiệp">Capstone project</div>
+        <p style="margin-top:5px;font-size:14px;color:var(--fg-2)"
+           data-vi="Phân tích cốt thép chống đột thủng trong bản sàn bê tông cốt thép.">
+          Analysis of shear reinforcement for punching shear resistance in reinforced concrete slabs.
+        </p>
+        <div class="meta">Apr 2023 &#8211; Jun 2023</div>
+      </div>
+
+      <div class="card edu rv">
+        <div class="sub-t" data-vi="Ngôn ngữ">Languages</div>
+        <p style="margin-top:5px;font-size:14px;color:var(--fg-2)">
+          <b data-vi="Tiếng Việt">Vietnamese</b> — <span data-vi="bản ngữ">native</span><br>
+          <b data-vi="Tiếng Anh">English</b> — TOEIC L&amp;R 525
+        </p>
+        <hr>
+        <div class="sub-t" data-vi="Giải thưởng">Award</div>
+        <p style="margin-top:5px;font-size:14px;color:var(--fg-2)"
+           data-vi="Đoạt giải Hội thi Kỹ thuật Khoa Khoa học Ứng dụng 2019 với dự án &#8220;Badminton Training Assistant Machine&#8221;.">
+          Winner, 2019 Applied Science Faculty Technical Festival — project <i>&#8220;Badminton Training Assistant Machine&#8221;</i>.
+        </p>
+        <hr>
+        <div class="sub-t" data-vi="Hồ sơ đầy đủ">Full record</div>
+        <div class="chips" style="margin-top:8px">
+          <a class="chip hot" href="assets/cv/CV_TruongThanhGiaThinh_2026.pdf" download data-vi="Tải CV 2026 (PDF)">CV 2026 (PDF)</a>
+          <a class="chip" href="https://www.linkedin.com/in/thinhtruong2611/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- AWARD -->
-      <section>
-        <p class="section-label">Giải thưởng</p>
-        <div class="award-item">
-          <strong>🏆 Giải Hội thi Khoa học Kỹ thuật 2019</strong>
-          Dự án "Badminton Training Assistant Machine" — Khoa Khoa học Ứng dụng, ĐH Bách Khoa TP.HCM.
-        </div>
-      </section>
 
-    </aside>
-  </div><!-- end .main-grid -->
+<!-- ============ contact ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span data-vi="Liên hệ">Contact</span>
+      </span>
+      <h2 data-vi="Trao đổi về dự án đường ống">Let us talk piping</h2>
+      <p data-vi="Sẵn sàng trao đổi về các dự án đường ống, khí tự nhiên và thiết bị chịu áp.">
+        Open to conversations about piping, natural gas and pressure equipment projects.
+      </p>
+    </div>
 
-  <footer>
-    <span>Trương Thành Gia Thịnh · Mechanical Design Engineer</span>
-    <span>thinhyugioh@gmail.com</span>
-  </footer>
+    <div class="contact-grid rv">
+      <a class="cc" href="mailto:thinhyugioh@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <div><div class="k">Email</div><div class="v">thinhyugioh@gmail.com</div></div>
+      </a>
 
-</div><!-- end .wrapper -->
+      <a class="cc" href="tel:+84332044085">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3h4l2 5-3 2a14 14 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>
+        <div><div class="k" data-vi="Điện thoại">Phone</div><div class="v">0332 044 085</div></div>
+      </a>
 
+      <a class="cc" href="https://www.linkedin.com/in/thinhtruong2611/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.3c0-1.26-.02-2.9-1.8-2.9-1.8 0-2.07 1.38-2.07 2.8V21H9z"/></svg>
+        <div><div class="k">LinkedIn</div><div class="v">in/thinhtruong2611</div></div>
+      </a>
+
+      <div class="cc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <div><div class="k" data-vi="Địa điểm">Location</div><div class="v" data-vi="Tân Phú, TP. Hồ Chí Minh">Tan Phu, Ho Chi Minh City</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ footer ============ -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="n">Truong Thanh Gia Thinh</div>
+      <div class="s">Mechanical &amp; Piping Engineer · &copy; <span id="year">2026</span></div>
+    </div>
+    <div class="foot-links">
+      <a class="icon-btn" href="mailto:thinhyugioh@gmail.com" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/thinhtruong2611/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.3c0-1.26-.02-2.9-1.8-2.9-1.8 0-2.07 1.38-2.07 2.8V21H9z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/brian261101" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
 </body>
 </html>
