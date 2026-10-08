@@ -17,7 +17,9 @@
   const REPO = 'All-of-50-Claude-Skill';
   const BRANCH = 'main';
   const DIR = 'skills/';
-  const TTL = 15 * 60 * 1000;
+  // GitHub cho 60 lan goi moi gio cho mot IP. 3 phut la du thua an toan,
+  // ma vua push xong khong phai cho lau moi thay.
+  const TTL = 3 * 60 * 1000;
 
   const API = 'https://api.github.com/repos/' + OWNER + '/' + REPO +
               '/git/trees/' + BRANCH + '?recursive=1';
@@ -214,12 +216,34 @@
       box.appendChild(msg('empty', t('No skill published yet', 'Chưa có skill nào'),
         t('Drop a skill folder into the repository and it will appear here automatically.',
           'Ném một thư mục skill vào repo là nó tự hiện ở đây.'), true));
+      const b = el('button', { class: 'btn ghost',
+        text: t('Refresh list', 'Làm mới danh sách') });
+      b.addEventListener('click', () => {
+        try { localStorage.removeItem('cskills.tree'); } catch (e) {}
+        render();
+      });
+      box.appendChild(el('div', { class: 'skills-refresh' }, [b]));
       return;
     }
 
     const metas = await Promise.all(list.map(describe));
     box.innerHTML = '';
     list.forEach((sk, i) => box.appendChild(row(sk, metas[i])));
+
+    box.appendChild(el('div', { class: 'skills-refresh' }, [
+      (function () {
+        const b = el('button', { class: 'btn ghost',
+          text: t('Refresh list', 'Làm mới danh sách') });
+        b.addEventListener('click', () => {
+          try { localStorage.removeItem('cskills.tree'); } catch (e) {}
+          render();
+        });
+        return b;
+      })(),
+      el('span', { class: 'skills-hint',
+        text: t('The list is cached for 3 minutes. Just pushed a skill? Refresh.',
+                'Danh sách được nhớ đệm 3 phút. Vừa push skill xong thì bấm làm mới.') })
+    ]));
 
     const c = $('skills-count');
     if (c) c.textContent = list.length;
