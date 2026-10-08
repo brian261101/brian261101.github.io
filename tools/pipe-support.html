@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tính giá đỡ đường ống — Truong Thanh Gia Thinh</title>
+<meta name="description" content="Công cụ tính giá đỡ đường ống bằng phần tử hữu hạn khung phẳng, chạy trực tiếp trong trình duyệt.">
+<meta name="theme-color" content="#0a0f1c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tính giá đỡ đường ống — phần tử hữu hạn">
+<meta property="og:description" content="Công cụ tính giá đỡ đường ống bằng phần tử hữu hạn khung phẳng, chạy trực tiếp trong trình duyệt.">
+<meta property="og:image" content="https://brian261101.github.io/assets/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0f1c'/%3E%3Cpath d='M5 21V11l11 5zM27 21V11l-11 5z' fill='%23f5a524'/%3E%3Cpath d='M16 16V9M11 9h10' stroke='%234fb3d9' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css?v=4">
+<style>
+  html, body { height: 100%; }
+  body { display: flex; flex-direction: column; overflow: hidden; }
+  .embed-bar {
+    flex: none; display: flex; align-items: center; gap: 12px;
+    padding: 9px 16px; border-bottom: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .embed-bar .back {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 600; color: var(--fg-2);
+  }
+  .embed-bar .back:hover { color: var(--flame); }
+  .embed-bar .back svg { width: 15px; height: 15px; }
+  .embed-bar .name { font-family: var(--mono); font-size: 12.5px; color: var(--fg); }
+  .embed-bar .name span { color: var(--fg-3); }
+  .embed-bar .sp { margin-left: auto; }
+  .embed-bar a.btn { padding: 6px 12px; font-size: 12.5px; }
+  iframe { flex: 1 1 auto; width: 100%; border: 0; display: block; background: var(--bg); }
+  @media (max-width: 620px) {
+    .embed-bar { flex-wrap: wrap; gap: 8px; padding: 8px 12px; }
+    .embed-bar .name { width: 100%; order: 3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="embed-bar">
+  <a class="back" href="../index.html#tools">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+    Về trang chính
+  </a>
+  <span class="name">giá đỡ đường ống <span>· phần tử hữu hạn khung phẳng</span></span>
+  <span class="sp"></span>
+  <a class="btn" href="https://brian261101.github.io/pipe-support-web/" target="_blank" rel="noopener">Toàn màn hình</a>
+  <a class="btn" href="https://github.com/brian261101/pipe-support-web" target="_blank" rel="noopener">Mã nguồn</a>
+</div>
+
+<iframe src="https://brian261101.github.io/pipe-support-web/"
+        title="Công cụ tính giá đỡ đường ống"
+        loading="eager"></iframe>
+
+<script>
+  // giữ nền tối cho khung nhúng, không theo nút sáng/tối của trang chính
+  document.documentElement.setAttribute('data-theme', 'dark');
+</script>
+</body>
+</html>
