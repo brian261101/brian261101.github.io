@@ -54,6 +54,8 @@
     });
 
     renderDurations();
+    // báo cho các mô-đun khác biết ngôn ngữ vừa đổi
+    document.dispatchEvent(new CustomEvent('psat:lang', { detail: { lang: lang } }));
 
     document.querySelectorAll('[data-lang-on]').forEach(function (el) {
       el.classList.toggle('on', el.getAttribute('data-lang-on') === lang);

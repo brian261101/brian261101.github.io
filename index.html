@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
-<link rel="stylesheet" href="assets/css/site.css?v=4">
+<link rel="stylesheet" href="assets/css/site.css?v=5">
 
 <script type="application/ld+json">
 {
@@ -148,6 +148,7 @@
       <li><a href="#skills"     data-vi="Kỹ năng">Skills</a></li>
       <li><a href="#stack"      data-vi="Phần mềm">Stack</a></li>
       <li><a href="#tools"      data-vi="Công cụ">Tools</a></li>
+      <li><a href="#claude-skills" data-vi="Skill Claude">Claude Skills</a></li>
       <li><a href="#education"  data-vi="Học vấn">Education</a></li>
       <li><a href="#contact"    data-vi="Liên hệ">Contact</a></li>
     </ul>
@@ -692,6 +693,36 @@
   </div>
 </section>
 
+<!-- ============ claude skills ============ -->
+<section id="claude-skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2"/><path d="M16 3h2a2 2 0 0 1 2 2v2"/><path d="M20 17v2a2 2 0 0 1-2 2h-2"/><path d="M8 21H6a2 2 0 0 1-2-2v-2"/><path d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 0 0 5 0"/></svg>
+        <span data-vi="Skill Claude">Claude Skills</span>
+      </span>
+      <h2 data-vi="Skill tôi viết cho Claude Code">Skills I wrote for Claude Code</h2>
+      <p data-vi="Mỗi skill là một bộ hướng dẫn đóng gói cho Claude Code — quy trình làm việc, quy tắc và các bước kiểm tra cho một đầu việc kỹ thuật cụ thể. Bấm tải là được file .zip, giải nén vào thư mục skill của bạn là dùng được.">
+        Each skill is a packaged instruction set for Claude Code — the workflow, the
+        rules and the checks for one specific engineering job. Download the .zip,
+        unpack it into your skills folder, and it is ready to use.
+      </p>
+    </div>
+
+    <div id="skills-list" class="skills-list rv"><div class="skillmsg load"><div class="t" data-vi="Đang tải danh sách skill…">Loading skill list…</div></div></div>
+
+    <details class="skills-how rv">
+      <summary data-vi="Cách cài một skill đã tải">How to install a downloaded skill</summary>
+      <p data-vi="Giải nén thư mục skill vào một trong hai chỗ, rồi mở Claude Code và gõ dấu gạch chéo để chọn:">
+        Unpack the skill folder into either location, then open Claude Code and type a
+        slash to pick it:
+      </p>
+      <pre><code>&lt;project&gt;/.claude/skills/&lt;skill-name&gt;/     <span data-vi="# chỉ dùng trong dự án đó"># that project only</span>
+~/.claude/skills/&lt;skill-name&gt;/              <span data-vi="# dùng ở mọi dự án"># every project</span></code></pre>
+    </details>
+  </div>
+</section>
+
 <!-- ============ education ============ -->
 <section id="education">
   <div class="wrap">
@@ -801,6 +832,8 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=4" defer></script>
+<script src="assets/js/zip.js?v=5" defer></script>
+<script src="assets/js/claude-skills.js?v=5" defer></script>
+<script src="assets/js/site.js?v=5" defer></script>
 </body>
 </html>

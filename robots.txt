@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://brian261101.github.io/sitemap.xml

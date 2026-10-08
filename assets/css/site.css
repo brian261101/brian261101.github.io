@@ -717,8 +717,8 @@ footer {
   .stats { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Nav tieng Viet co 7 muc can ~922px; duoi nguong nay chuyen sang menu mobile. */
-@media (max-width: 980px) {
+/* Nav tieng Viet co 8 muc can ~1019px; duoi nguong nay chuyen sang menu mobile. */
+@media (max-width: 1040px) {
   .nav-links {
     position: fixed;
     inset: var(--nav-h) 0 auto 0;
@@ -791,3 +791,56 @@ footer {
 }
 .when .dur { font-weight: 400; color: var(--fg-3); }
 .when .dur::before { content: " · "; }
+
+/* ---------- Claude skills ---------- */
+.skills-list { display: grid; gap: 10px; }
+
+.skillrow { padding: 15px 17px; }
+.skillrow-head {
+  display: flex; flex-wrap: wrap; align-items: flex-start;
+  gap: 10px 14px; justify-content: space-between;
+}
+.skillrow h3 {
+  font-family: var(--mono); font-size: 1rem; font-weight: 700;
+  letter-spacing: -0.01em; word-break: break-word;
+}
+.skillrow-meta {
+  font-family: var(--mono); font-size: 11.5px; color: var(--fg-3); margin-top: 3px;
+}
+.skillrow-act { display: flex; flex-wrap: wrap; gap: 7px; }
+.skillrow-act .btn { padding: 7px 13px; font-size: 12.5px; }
+.skillrow-desc {
+  margin-top: 10px; color: var(--fg-2); font-size: 14px; max-width: 78ch;
+}
+
+.skillmsg {
+  border: 1px dashed var(--line-2); border-radius: var(--r);
+  padding: 20px; text-align: center;
+}
+.skillmsg .t { font-weight: 600; font-size: 14px; }
+.skillmsg .b {
+  color: var(--fg-2); font-size: 13px; margin-top: 5px;
+  max-width: 62ch; margin-inline: auto;
+}
+.skillmsg .btn { margin-top: 12px; }
+.skillmsg.warn { border-color: color-mix(in srgb, var(--flame) 45%, var(--line)); }
+.skillmsg.warn .t { color: var(--flame); }
+.skillmsg.load .t { color: var(--fg-3); font-weight: 400; }
+
+.skills-how {
+  margin-top: 14px; border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--panel); padding: 12px 16px;
+}
+.skills-how summary {
+  cursor: pointer; font-size: 13.5px; font-weight: 600; color: var(--fg-2);
+}
+.skills-how summary:hover { color: var(--flame); }
+.skills-how p { margin-top: 9px; font-size: 13.5px; color: var(--fg-2); }
+.skills-how pre {
+  margin-top: 8px; padding: 11px 13px; overflow-x: auto;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+}
+.skills-how code {
+  font-family: var(--mono); font-size: 12.5px; color: var(--fg); white-space: pre;
+}
+.skills-how code span { color: var(--fg-3); }
