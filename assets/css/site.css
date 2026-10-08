@@ -845,6 +845,36 @@ footer {
 }
 .skills-how code span { color: var(--fg-3); }
 
+/* Muc Hoc van gap lai thanh mot nut bam. Summary phai giu display:list-item,
+   vi dat display:flex la Chrome bo luon tam giac mo/dong. */
+.edufold {
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--panel); padding: 16px 20px;
+  transition: border-color .18s;
+}
+.edufold:hover { border-color: var(--line-2); }
+.edufold summary {
+  cursor: pointer; margin-left: 2px;
+  font-family: var(--sans); font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+  font-weight: 700; letter-spacing: -0.02em; color: var(--fg);
+  list-style-position: outside;
+}
+.edufold summary::marker { color: var(--flame); font-size: .75em; }
+.edufold summary svg {
+  /* trang nay co rule chung svg{display:block}, de nguyen thi icon xuong
+     dong rieng va vertical-align khong con tac dung */
+  display: inline-block;
+  width: 1.05em; height: 1.05em; color: var(--flame);
+  vertical-align: -0.16em; margin-right: 10px;
+}
+.edufold summary:hover { color: var(--flame); }
+.edufold[open] summary {
+  padding-bottom: 13px; margin-bottom: 15px;
+  border-bottom: 1px solid var(--line);
+}
+/* the ben trong phai sang hon nen khoi gap moi con phan biet duoc */
+.edufold .card { background: var(--panel-2); }
+
 .skills-refresh {
   display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
   justify-content: center; margin-top: 4px;
