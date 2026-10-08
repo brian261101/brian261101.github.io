@@ -338,21 +338,6 @@ h1.name .accent {
 .portrait::before { top: -8px;  left: -8px;  border-right: 0; border-bottom: 0; border-radius: 4px 0 0 0; }
 .portrait::after  { bottom: -8px; right: -8px; border-left: 0;  border-top: 0;    border-radius: 0 0 4px 0; }
 
-.portrait .plate {
-  position: absolute;
-  left: 50%;
-  bottom: -13px;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  padding: 3px 11px;
-  border: 1px solid var(--line-2);
-  border-radius: 999px;
-  background: var(--bg-2);
-  font-family: var(--mono);
-  font-size: 10.5px;
-  color: var(--fg-2);
-}
-
 /* hero spool drawing */
 .spool {
   margin-top: 46px;
@@ -717,7 +702,7 @@ footer {
 }
 
 /* Nav tieng Viet co 8 muc can ~1019px; duoi nguong nay chuyen sang menu mobile. */
-@media (max-width: 1040px) {
+@media (max-width: 1070px) {
   .nav-links {
     position: fixed;
     inset: var(--nav-h) 0 auto 0;
