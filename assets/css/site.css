@@ -267,7 +267,6 @@ h1.name .accent {
   letter-spacing: .01em;
   color: var(--steel);
 }
-.role .sep { color: var(--fg-3); margin-inline: 7px; }
 
 .lede {
   margin-top: 20px;
